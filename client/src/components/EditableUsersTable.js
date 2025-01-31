@@ -21,7 +21,7 @@ function EditableUsersTable() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://chrisco-church-endpoints.onrender.com/users/all",config
+        "https://api.chriscocentralnairobi.org/users/all", config
       );
       setUsers(response.data);
     } catch (error) {
@@ -45,7 +45,7 @@ function EditableUsersTable() {
     try {
       const userToUpdate = users.find((user) => user.id === id);
       await axios.patch(
-        `https://chrisco-church-endpoints.onrender.com/users/${id}`,
+        `https://api.chriscocentralnairobi.org/users/${id}`,
         userToUpdate
       );
       console.log(`User with ID ${id} updated successfully`);
@@ -57,7 +57,7 @@ function EditableUsersTable() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://chrisco-church-endpoints.onrender.com/users/${id}`
+        `https://api.chriscocentralnairobi.org/users/${id}`
       );
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
       console.log(`User with ID ${id} deleted successfully`);
@@ -69,8 +69,8 @@ function EditableUsersTable() {
   const handleAddNewUser = async () => {
     try {
       const response = await axios.post(
-        "https://chrisco-church-endpoints.onrender.com/users/new",
-        newUser ,config
+        "https://api.chriscocentralnairobi.org/users/new",
+        newUser, config
       );
       setUsers((prevUsers) => [...prevUsers, response.data]);
       setNewUser({});
@@ -137,7 +137,7 @@ function EditableUsersTable() {
           ))}
           <tr>
             <td>
-              
+
             </td>
             <td className="px-4 py-2">
               <TextInput

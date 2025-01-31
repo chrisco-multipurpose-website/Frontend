@@ -29,7 +29,7 @@ function EditableEventsTable() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/events/all');
+      const response = await axios.get('https://api.chriscocentralnairobi.org/events/all');
       setEvents(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -51,7 +51,7 @@ function EditableEventsTable() {
   const handleSave = async (id) => {
     try {
       const eventToUpdate = events.find(event => event.id === id);
-      await axios.patch(`https://chrisco-church-endpoints.onrender.com/events/update/${id}`, eventToUpdate,config);
+      await axios.patch(`https://api.chriscocentralnairobi.org/events/update/${id}`, eventToUpdate, config);
       console.log(`Event with ID ${id} updated successfully`);
     } catch (error) {
       console.error('Error updating event:', error);
@@ -60,7 +60,7 @@ function EditableEventsTable() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://chrisco-church-endpoints.onrender.com/events/delete/${id}`,config);
+      await axios.delete(`https://api.chriscocentralnairobi.org/events/delete/${id}`, config);
       setEvents(prevEvents => prevEvents.filter(event => event.id !== id));
       console.log(`Event with ID ${id} deleted successfully`);
     } catch (error) {
@@ -70,7 +70,7 @@ function EditableEventsTable() {
 
   const handleAddEvent = async () => {
     try {
-      await axios.post('https://chrisco-church-endpoints.onrender.com/events/new', newEvent,config);
+      await axios.post('https://api.chriscocentralnairobi.org/events/new', newEvent, config);
       setNewEvent({
         title: '',
         description: '',
@@ -90,8 +90,8 @@ function EditableEventsTable() {
   };
 
   return (
-<div className="p-6">     
- <Table>
+    <div className="p-6">
+      <Table>
         <thead>
           <tr>
             <th>Title</th>

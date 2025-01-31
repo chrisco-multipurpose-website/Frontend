@@ -20,7 +20,7 @@ function EditableBlogsTable() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/blogs/all');
+      const response = await axios.get('https://api.chriscocentralnairobi.org/blogs/all');
       if (response.data.length > 0) {
         const firstBlog = response.data[0];
         const blogFields = Object.keys(firstBlog);
@@ -48,7 +48,7 @@ function EditableBlogsTable() {
   const handleSave = async (id) => {
     try {
       const blogToUpdate = blogs.find(blog => blog.id === id);
-      await axios.patch(`https://chrisco-church-endpoints.onrender.com/blogs/update/${id}`, blogToUpdate,config);
+      await axios.patch(`https://api.chriscocentralnairobi.org/blogs/update/${id}`, blogToUpdate, config);
       console.log(`Blog with ID ${id} updated successfully`);
     } catch (error) {
       console.error('Error updating blog:', error);
@@ -57,7 +57,7 @@ function EditableBlogsTable() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://chrisco-church-endpoints.onrender.com/blogs/delete/${id}`,config);
+      await axios.delete(`https://api.chriscocentralnairobi.org/blogs/delete/${id}`, config);
       setBlogs(prevBlogs => prevBlogs.filter(blog => blog.id !== id));
       console.log(`Blog with ID ${id} deleted successfully`);
     } catch (error) {
@@ -67,7 +67,7 @@ function EditableBlogsTable() {
 
   const handleAddBlog = async () => {
     try {
-      const response = await axios.post('https://chrisco-church-endpoints.onrender.com/blogs/new', newBlog,config);
+      const response = await axios.post('https://api.chriscocentralnairobi.org/blogs/new', newBlog, config);
       setBlogs(prevBlogs => [...prevBlogs, response.data]);
       console.log('New blog added successfully');
     } catch (error) {
@@ -84,7 +84,7 @@ function EditableBlogsTable() {
   };
 
   return (
-    <div  className="p-6">
+    <div className="p-6">
       <Table className="w-full">
         <thead>
           <tr>
@@ -137,8 +137,8 @@ function EditableBlogsTable() {
               className="mr-2"
             />
           ))}
-        
-        <Button  onClick={handleAddBlog}>Add Blog</Button>
+
+          <Button onClick={handleAddBlog}>Add Blog</Button>
         </div>
       </div>
     </div>
