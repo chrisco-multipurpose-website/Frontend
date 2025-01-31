@@ -21,7 +21,7 @@ function EditableDepartmentsTable() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/departments/all');
+      const response = await axios.get('https://api.chriscocentralnairobi.org/departments/all');
       if (response.data.length > 0) {
         const firstDepartment = response.data[0];
         const departmentFields = Object.keys(firstDepartment);
@@ -49,7 +49,7 @@ function EditableDepartmentsTable() {
   const handleSave = async (id) => {
     try {
       const departmentToUpdate = departments.find(department => department.id === id);
-      await axios.patch(`https://chrisco-church-endpoints.onrender.com/departments/update/${id}`, departmentToUpdate,config);
+      await axios.patch(`https://api.chriscocentralnairobi.org/departments/update/${id}`, departmentToUpdate, config);
       console.log(`Department with ID ${id} updated successfully`);
     } catch (error) {
       console.error('Error updating department:', error);
@@ -58,7 +58,7 @@ function EditableDepartmentsTable() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://chrisco-church-endpoints.onrender.com/departments/delete/${id}`,config);
+      await axios.delete(`https://api.chriscocentralnairobi.org/departments/delete/${id}`, config);
       setDepartments(prevDepartments => prevDepartments.filter(department => department.id !== id));
       console.log(`Department with ID ${id} deleted successfully`);
     } catch (error) {
@@ -68,7 +68,7 @@ function EditableDepartmentsTable() {
 
   const handleAddDepartment = async () => {
     try {
-      const response = await axios.post('https://chrisco-church-endpoints.onrender.com/departments/new', newDepartment,config);
+      const response = await axios.post('https://api.chriscocentralnairobi.org/departments/new', newDepartment, config);
       setDepartments(prevDepartments => [...prevDepartments, response.data]);
       console.log('New department added successfully');
     } catch (error) {
@@ -85,7 +85,7 @@ function EditableDepartmentsTable() {
   };
 
   return (
-    <div  className="p-6">
+    <div className="p-6">
       <Table>
         <thead>
           <tr>
@@ -120,14 +120,14 @@ function EditableDepartmentsTable() {
         <h2 className='font-bold'>Add New Department</h2>
         {fields.map(field => (
           <TextInput
-          className='px-4 py-1'
+            className='px-4 py-1'
             key={field}
             value={newDepartment[field]}
             onChange={(e) => handleNewDepartmentInputChange(e, field)}
             placeholder={field}
           />
         ))}
-        <Button className='mx-4'onClick={handleAddDepartment}>Add Department</Button>
+        <Button className='mx-4' onClick={handleAddDepartment}>Add Department</Button>
       </div>
     </div>
   );

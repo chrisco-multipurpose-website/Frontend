@@ -18,7 +18,7 @@ function EditableTable() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/services/all');
+      const response = await axios.get('https://api.chriscocentralnairobi.org/services/all');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -37,7 +37,7 @@ function EditableTable() {
   const handleSave = async (id) => {
     try {
       const itemToUpdate = data.find(item => item.id === id);
-      await axios.patch(`https://chrisco-church-endpoints.onrender.com/services/${id}`, itemToUpdate);
+      await axios.patch(`https://api.chriscocentralnairobi.org/services/${id}`, itemToUpdate);
       fetchData();
     } catch (error) {
       console.error('Error updating data:', error);
@@ -46,7 +46,7 @@ function EditableTable() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://chrisco-church-endpoints.onrender.com/services/${id}`);
+      await axios.delete(`https://api.chriscocentralnairobi.org/services/${id}`);
       fetchData();
       console.log(`Item with ID ${id} deleted successfully`);
     } catch (error) {
@@ -56,7 +56,7 @@ function EditableTable() {
 
   const handleAddItem = async () => {
     try {
-      await axios.post('https://chrisco-church-endpoints.onrender.com/services', newItem);
+      await axios.post('https://api.chriscocentralnairobi.org/services', newItem);
       setNewItem({
         name: '',
         service_type: '',
@@ -111,7 +111,7 @@ function EditableTable() {
               </td>
               <td className='flex '>
                 <Button className='mx-4' onClick={() => handleSave(row.id)}>Save</Button>
-                <Button className='mx-4'onClick={() => handleDelete(row.id)} variant="danger">Delete</Button>
+                <Button className='mx-4' onClick={() => handleDelete(row.id)} variant="danger">Delete</Button>
               </td>
             </tr>
           ))}

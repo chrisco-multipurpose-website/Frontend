@@ -13,7 +13,7 @@ function AboutUs() {
     const fetchAboutData = async () => {
       try {
         const response = await fetch(
-          "https://chrisco-church-endpoints.onrender.com/about/all"
+          "https://api.chriscocentralnairobi.org/about/all"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");

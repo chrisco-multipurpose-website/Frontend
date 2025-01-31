@@ -12,7 +12,7 @@ const ResetPassword = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://chrisco-church-endpoints.onrender.com/auth/reset-password', {
+      const response = await fetch('https://api.chriscocentralnairobi.org/auth/reset-password', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

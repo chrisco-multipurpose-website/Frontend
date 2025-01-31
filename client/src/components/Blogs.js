@@ -15,7 +15,7 @@ function Blogs() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/blogs/all');
+      const response = await axios.get('https://api.chriscocentralnairobi.org/blogs/all');
       setBlogs(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -29,19 +29,19 @@ function Blogs() {
   return (
     <>
       <Header />
-      
-        <div className='row mx-auto  md:flex p-4'>
+
+      <div className='row mx-auto  md:flex p-4'>
         {blogs.map(blog => (
           <BlogCard
             key={blog.id}
-            id ={blog.id}
+            id={blog.id}
             title={blog.title}
             description={blog.description}
             onClick={handleReadMore}
           />
         ))}
       </div>
-      
+
       <Footer />
     </>
   );

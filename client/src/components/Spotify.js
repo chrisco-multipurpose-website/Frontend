@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BsChevronDoubleRight } from "react-icons/bs";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SpotifyEmbeds = () => {
   const [latestEpisodes, setLatestEpisodes] = useState([]);
@@ -13,9 +13,9 @@ const SpotifyEmbeds = () => {
 
   const fetchLatestEpisodes = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/spotify/latest-episodes');
+      const response = await axios.get('https://api.chriscocentralnairobi.org/spotify/latest-episodes');
       const latestEpisodes = response.data.slice(0, 3); // Slice to get only the first three episodes
-    setLatestEpisodes(latestEpisodes);
+      setLatestEpisodes(latestEpisodes);
     } catch (error) {
       console.error('Error fetching latest episodes:', error);
     }

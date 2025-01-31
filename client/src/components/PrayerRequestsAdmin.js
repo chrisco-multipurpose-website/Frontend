@@ -5,13 +5,13 @@ import { BsCheckCircle, BsCircle } from 'react-icons/bs';
 
 const PrayerRequestsTable = () => {
   const [requests, setRequests] = useState([]);
-   const token = localStorage.getItem('accessToken')
+  const token = localStorage.getItem('accessToken')
 
-   const config = {
-    headers:{
+  const config = {
+    headers: {
       Authorization: `Bearer ${token}`
     },
-   }
+  }
 
   useEffect(() => {
     fetchData();
@@ -19,7 +19,7 @@ const PrayerRequestsTable = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://chrisco-church-endpoints.onrender.com/requests/all', config);
+      const response = await axios.get('https://api.chriscocentralnairobi.org/requests/all', config);
       setRequests(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -28,7 +28,7 @@ const PrayerRequestsTable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://chrisco-church-endpoints.onrender.com/requests/delete/${id}`,config);
+      await axios.delete(`https://api.chriscocentralnairobi.org/requests/delete/${id}`, config);
       setRequests(requests.filter(request => request.id !== id));
       console.log(`Request with ID ${id} deleted successfully`);
     } catch (error) {
@@ -39,7 +39,7 @@ const PrayerRequestsTable = () => {
   const handlePrayedFor = async (id) => {
     try {
       // Update the request in the backend to mark it as prayed for
-      await axios.patch(`https://chrisco-church-endpoints.onrender.com/requests/${id}`, { prayed_for: true });
+      await axios.patch(`https://api.chriscocentralnairobi.org/requests/${id}`, { prayed_for: true });
       // Update the local state to reflect the change
       setRequests(prevRequests =>
         prevRequests.map(request =>
@@ -53,36 +53,36 @@ const PrayerRequestsTable = () => {
   };
 
   return (
-    <div  className="p-6">
-    <Table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Request</th>
-          <th>Timestamp</th>
-          <th>Prayed For</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {requests.map(request => (
-          <tr className="px-4 py-2"key={request.id}>
-            <td className="px-4 py-2">{request.id}</td>
-            <td className="px-4 py-2">{request.request}</td>
-            <td className="px-4 py-2">{request.timestamp}</td>
-            <td className="px-4 py-2">
-              {request.prayed_for ? <BsCheckCircle color="green" /> : <BsCircle color="red" />}
-            </td>
-            <td className='flex '>
-              <Button className='mx-4' onClick={() => handleDelete(request.id)} variant="danger">Delete</Button>
-              {!request.prayed_for && (
-                <Button className='mx-4' onClick={() => handlePrayedFor(request.id)}>Prayed For</Button>
-              )}
-            </td>
+    <div className="p-6">
+      <Table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Request</th>
+            <th>Timestamp</th>
+            <th>Prayed For</th>
+            <th>Actions</th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {requests.map(request => (
+            <tr className="px-4 py-2" key={request.id}>
+              <td className="px-4 py-2">{request.id}</td>
+              <td className="px-4 py-2">{request.request}</td>
+              <td className="px-4 py-2">{request.timestamp}</td>
+              <td className="px-4 py-2">
+                {request.prayed_for ? <BsCheckCircle color="green" /> : <BsCircle color="red" />}
+              </td>
+              <td className='flex '>
+                <Button className='mx-4' onClick={() => handleDelete(request.id)} variant="danger">Delete</Button>
+                {!request.prayed_for && (
+                  <Button className='mx-4' onClick={() => handlePrayedFor(request.id)}>Prayed For</Button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </div>
   );
 };

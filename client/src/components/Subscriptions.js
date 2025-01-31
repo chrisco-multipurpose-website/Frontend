@@ -21,7 +21,7 @@ function Subscriptions() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://chrisco-church-endpoints.onrender.com/subscriptions/all",config
+        "https://api.chriscocentralnairobi.org/subscriptions/all", config
       );
       setSubscribers(response.data);
     } catch (error) {

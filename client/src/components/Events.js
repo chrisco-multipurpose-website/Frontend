@@ -12,7 +12,7 @@ function Events(){
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     useEffect(() => {
-        fetch('https://chrisco-church-endpoints.onrender.com/events/all')
+        fetch('https://api.chriscocentralnairobi.org/events/all')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error fetching events');

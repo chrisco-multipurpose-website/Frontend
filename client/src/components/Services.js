@@ -12,7 +12,7 @@ export default function Services() {
   const fetchServiceDetails = async () => {
     try {
       const response = await axios.get(
-        "https://chrisco-church-endpoints.onrender.com/services/all"
+        "https://api.chriscocentralnairobi.org/services/all"
       );
       setServiceDetails(response.data);
     } catch (error) {

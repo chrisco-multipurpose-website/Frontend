@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.css';
 
@@ -18,7 +18,7 @@ const LogIn = ({ onClose }) => {
 
     try {
 
-      const response = await fetch('https://chrisco-church-endpoints.onrender.com/auth/login', {
+      const response = await fetch('https://api.chriscocentralnairobi.org/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,12 +38,12 @@ const LogIn = ({ onClose }) => {
       localStorage.setItem('lastName', data.user_details.lastname);
       localStorage.setItem('email', data.user_details.email);
       localStorage.setItem('role', data.user_details.role);
-      localStorage.setItem('id',data.user_details.id)
+      localStorage.setItem('id', data.user_details.id)
       localStorage.setItem('isLoggedIn', 'true');
 
 
       console.log("i am redirecting")
-      navigate("/panel" );
+      navigate("/panel");
     } catch (error) {
       setError(error.message);
     }
@@ -53,26 +53,26 @@ const LogIn = ({ onClose }) => {
     <div className="login-container">
       <img src="./logo.svg" alt="Logo" className="login-logo" />
 
-      <h6 className="signup-header">Don't have an account yet? <a  className="signup-link">switch to Sign up below</a></h6>
+      <h6 className="signup-header">Don't have an account yet? <a className="signup-link">switch to Sign up below</a></h6>
       <form>
         <div>
-          <input 
+          <input
             className="login-input"
-            type="email" 
+            type="email"
             placeholder="Email"
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required  
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div>
-          <input 
+          <input
             className="login-input"
-            type="password" 
+            type="password"
             placeholder="Password"
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required  
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button className="login-button" type="submit" onClick={handleLogin}>Log In</button>

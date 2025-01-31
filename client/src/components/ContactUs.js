@@ -13,8 +13,8 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 // Override the default icon URLs with the correct paths
 let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow
+  iconUrl: icon,
+  shadowUrl: iconShadow
 });
 
 // Set the default icon for Leaflet
@@ -33,7 +33,7 @@ const ContactUs = () => {
     };
 
     try {
-      const response = await fetch('https://chrisco-church-endpoints.onrender.com/inquiries/create', {
+      const response = await fetch('https://api.chriscocentralnairobi.org/inquiries/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -11,7 +11,7 @@ function EditableInquiriesTable() {
     },
   };
   const [inquiries, setInquiries] = useState([]);
-  
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,7 +19,7 @@ function EditableInquiriesTable() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://chrisco-church-endpoints.onrender.com/inquiries/all",config
+        "https://api.chriscocentralnairobi.org/inquiries/all", config
       );
       setInquiries(response.data);
     } catch (error) {
@@ -30,7 +30,7 @@ function EditableInquiriesTable() {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://chrisco-church-endpoints.onrender.com/inquiries/${id}`,config
+        `https://api.chriscocentralnairobi.org/inquiries/${id}`, config
       );
       setInquiries((prevInquiries) => prevInquiries.filter((inquiry) => inquiry.id !== id));
       console.log(`Inquiry with ID ${id} deleted successfully`);

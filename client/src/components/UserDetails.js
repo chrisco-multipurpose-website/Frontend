@@ -20,8 +20,8 @@ function UserCard({ user, onSave }) {
       <div className="flex flex-col items-center pb-10">
         <Image
           alt={`${user.firstname} ${user.lastname}`}
-        //   src={`/images/people/${user.profilePicture}.jpg`}
-        src ={`faith.png`}
+          //   src={`/images/people/${user.profilePicture}.jpg`}
+          src={`faith.png`}
           className="mb-3 rounded-full shadow-lg"
         />
         <TextInput
@@ -64,7 +64,7 @@ function UserDetails() {
 
   const fetchData = async (userId) => {
     try {
-      const response = await axios.get(`https://chrisco-church-endpoints.onrender.com/users/${userId}`);
+      const response = await axios.get(`https://api.chriscocentralnairobi.org/users/${userId}`);
       setUser(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -73,7 +73,7 @@ function UserDetails() {
 
   const handleSave = async (editedUser) => {
     try {
-      await axios.put(`https://chrisco-church-endpoints.onrender.com/users/${editedUser.id}`, editedUser);
+      await axios.put(`https://api.chriscocentralnairobi.org/users/${editedUser.id}`, editedUser);
       setUser(editedUser);
       alert('User details saved successfully!');
     } catch (error) {
